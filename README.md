@@ -50,7 +50,7 @@ Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
 
   Dependency Injection voorbeelden geimplementeerd met Spring (geen Web).
 
-- [spring_mvc_account](spring_mvc_account)
+- [spring_mvc_account](spring_mvc_account) ![Spring Boot][spring_boot]
 
   Een heel eenvoudig Spring MVC voorbeeld waarvan de view kant is gebouwd met JSP.
 
