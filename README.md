@@ -54,7 +54,7 @@ Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
 
   Een heel eenvoudig Spring MVC voorbeeld waarvan de view kant is gebouwd met JSP.
 
-- **Extra:** [smvc_thymeleaf_account](smvc_thymeleaf_account)
+- **Extra:** [smvc_thymeleaf_account](smvc_thymeleaf_account) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
 
   Spring MVC met Thymeleaf.
 
@@ -100,3 +100,4 @@ Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
 
 [spring]: images/spring-logo_22_22.png
 [spring_boot]: images/spring-boot-logo_24_22.png
+[thymeleaf]: images/thymeleaf-logo_22_22.png
