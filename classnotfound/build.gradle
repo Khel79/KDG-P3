@@ -2,49 +2,14 @@ group 'be.kdg'
 version '1.0'
 
 apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: jasperVersion)
-
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion) {
-        exclude(module: 'spring-boot-starter-tomcat')
-    }
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: springBootVersion)
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion)
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion)
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion)
-    compile(group: 'com.h2database', name: 'h2', version: '1.4.192')
-
-    // Thymeleaf 3: (Spring Boot configuration doesn't work yet)
-    // Need to add this dependency explicitly (version conflict)
-    //compile(group: "org.thymeleaf", name: "thymeleaf", version: "3.0.2.RELEASE")
-    //compile(group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.2.RELEASE')
-    //compile(group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.0.RELEASE')
-
-    // Thymeleaf 2:
-    compile(group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '2.1.2.RELEASE')
-    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion)
-}
-
-jar {
-    baseName = rootProject.name
-    version =  version
-}
+apply plugin: 'org.springframework.boot'
 
 buildscript {
     ext {
-        springBootVersion = '1.4.1.RELEASE'
-        jasperVersion = '8.5.5'
+        springBootVersion = '1.5.1.RELEASE'
+        h2Version = '1.4.192'
+        thymeleafSpringSecurityVersion = '2.1.3.RELEASE' //'3.0.2.RELEASE'
     }
-
     repositories {
         mavenCentral()
     }
@@ -53,6 +18,29 @@ buildscript {
     }
 }
 
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion)
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion)
+
+    compile(group: 'com.h2database', name: 'h2', version: h2Version)
+
+    // For the moment, we use the out-of-the-box support for Thymeleaf 2:
+    compile(group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: thymeleafSpringSecurityVersion)
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion)
+
+    // Thymeleaf 3 will be supported by Spring Boot starting from version 2.0 (https://github.com/spring-projects/spring-boot/issues/7450)
+    //compile(group: "org.thymeleaf", name: "thymeleaf", version: "3.0.2.RELEASE")
+    //compile(group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.2.RELEASE')
+    //compile(group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.0.RELEASE')
+}
+
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.1'
+    gradleVersion = '3.3'
 }
