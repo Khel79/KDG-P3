@@ -14,8 +14,7 @@ public class SuperUser {
     public SuperUser() {
     }
 
-    // Getters
-    // Setter
+    // Getters and Setters
 
     public String getName() {
         return name;
