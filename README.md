@@ -60,11 +60,11 @@ Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
 
 ## Week 4
 
-- [controllers](controllers)
+- [controllers](controllers) ![Spring Boot][spring_boot]
 
   Drie Spring MVC controllers worden gebruikt om de parameters en return types van controller-methods te illustreren.
 
-- [cycling](cycling)
+- [cycling](cycling) ![Spring Boot][spring_boot]
 
   Een spring MVC applicatie met achterliggend twee tabellen in een H2 databank.
 
