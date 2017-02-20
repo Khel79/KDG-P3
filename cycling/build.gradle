@@ -2,12 +2,21 @@ group 'be.kdg'
 version '1.0'
 
 apply plugin: 'java'
-apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
 
-apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-
-gretty {
-    httpPort = 8090
+buildscript {
+    ext {
+        springBootVersion = '1.5.1.RELEASE'
+        jasperVersion = '8.5.5'
+        h2Version = '1.4.192'
+        jstlVersion = '1.2'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootVersion)
+    }
 }
 
 sourceCompatibility = 1.8
@@ -17,21 +26,15 @@ repositories {
 }
 
 dependencies {
-    compile(group: 'org.springframework', name: 'spring-webmvc', version: '4.3.3.RELEASE')
-    compile(group: 'javax.servlet', name: 'jstl', version: '1.2')
-    compile(group: 'javax', name: 'javaee-api', version: '7.0')
+    compile(group: 'javax.servlet', name: 'jstl', version: jstlVersion)
+    compile(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: jasperVersion)
 
-    // Contains @Entity and friends:
-    compile(group: 'javax.persistence', name: 'persistence-api', version: '1.0.2')
-    // Contains @Transactional and friends:
-    compile(group: 'org.springframework', name: 'spring-tx', version: '4.3.2.RELEASE')
-    // Contains CrudRepository and friends:
-    compile(group: 'org.springframework.data', name: 'spring-data-commons', version: '1.12.2.RELEASE')
-    // Contains HibernateTransactionManager, LocalSessionFactoryBean and friends:
-    compile(group: 'org.springframework', name: 'spring-orm', version: '4.3.2.RELEASE')
-    // Contains @EnableJpaRepositories and friends (also references some OLD versions of the dependencies above, so those dependencies should remain in place!):
-    compile(group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.2.RELEASE')
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion)
 
-    compile(group: 'com.h2database', name: 'h2', version: '1.4.192')
-    compile(group: 'org.hibernate', name: 'hibernate-core', version: '5.2.2.Final')
+    compile(group: 'com.h2database', name: 'h2', version: h2Version)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
 }
