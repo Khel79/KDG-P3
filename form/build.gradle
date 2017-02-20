@@ -2,12 +2,21 @@ group 'be.kdg'
 version '1.0'
 
 apply plugin: 'java'
-apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
 
-apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
-
-gretty {
-    httpPort = 8090
+buildscript {
+    ext {
+        springBootVersion = '1.5.1.RELEASE'
+        jasperVersion = '8.5.5'
+        jstlVersion = '1.2'
+        hibernateValidatorVersion = '5.4.0.Final'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootVersion)
+    }
 }
 
 sourceCompatibility = 1.8
@@ -17,9 +26,14 @@ repositories {
 }
 
 dependencies {
-    compile(group: 'org.springframework', name: 'spring-webmvc', version: '4.3.3.RELEASE')
-    compile(group: 'javax.servlet', name: 'jstl', version: '1.2')
-    compile(group: 'javax', name: 'javaee-api', version: '7.0')
+    compile(group: 'javax.servlet', name: 'jstl', version: jstlVersion)
+    compile(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: jasperVersion)
 
-    compile(group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.4.Final')
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
+
+    compile(group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
 }

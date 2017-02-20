@@ -5,7 +5,7 @@
 <html>
     <head>
         <title><s:message code="form.register" /></title>
-        <link rel="stylesheet" type="text/css" href="<s:url value="/static/css/style.css" />">
+        <link rel="stylesheet" type="text/css" href="<s:url value="/css/style.css" />">
     </head>
     <body>
         <sf:form method="post" modelAttribute="userData">
