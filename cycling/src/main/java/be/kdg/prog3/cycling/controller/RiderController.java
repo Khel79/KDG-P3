@@ -1,7 +1,7 @@
 package be.kdg.prog3.cycling.controller;
 
 import be.kdg.prog3.cycling.model.Rider;
-import be.kdg.prog3.cycling.model.RiderRepository;
+import be.kdg.prog3.cycling.persistence.RiderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
