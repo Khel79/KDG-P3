@@ -23,6 +23,10 @@
                     <tr th:each="question : ${questions}" th:id="'question_' + ${question.id}">
                         <td class="scoreColumn">
                             <a href="" class="down">&ddarr;</a>
+
+                            <!--/* th:classappend="${#votes.contains(vote.questionAnswer.id, question.id)} ? JOS : JEF" */-->
+                            <!--/* <span th:text="${#votes.contains(jos)}"></span> */-->
+
                             <span th:text="${question.score}"></span>
                             <a href="" class="up">&uuarr;</a>
                         </td>

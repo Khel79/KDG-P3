@@ -76,3 +76,10 @@ INSERT INTO question_answer (qa_body, qa_score, qa_timestamp, qa_use_id, qa_pare
   VALUES ('Omdat de structuur en instellingen niet zo flexibel zijn en omdat het extensions-systeem nogal complex in elkaar zit. De tonnen XML die nodig zijn voor Maven kunnen we ook missen.', 1, '2016-08-30 19:45:00',
         SELECT use_id FROM user WHERE use_name = 'pedro',
         4);
+
+INSERT INTO vote (vot_use_id, vot_qa_id, vot_is_up)
+  VALUES (SELECT use_id FROM user WHERE use_name = 'lars', 1, TRUE);
+INSERT INTO vote (vot_use_id, vot_qa_id, vot_is_up)
+  VALUES (SELECT use_id FROM user WHERE use_name = 'lars', 10, TRUE);
+INSERT INTO vote (vot_use_id, vot_qa_id, vot_is_up)
+  VALUES (SELECT use_id FROM user WHERE use_name = 'lars', 4, FALSE);

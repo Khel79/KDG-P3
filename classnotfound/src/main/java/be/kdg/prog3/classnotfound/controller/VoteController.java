@@ -1,8 +1,11 @@
 package be.kdg.prog3.classnotfound.controller;
 
+import be.kdg.prog3.classnotfound.controller.exception.DuplicateVoteCastException;
+import be.kdg.prog3.classnotfound.controller.exception.QuestionNotFoundException;
+import be.kdg.prog3.classnotfound.controller.exception.VoteNotFoundException;
 import be.kdg.prog3.classnotfound.model.QuestionAnswer;
-import be.kdg.prog3.classnotfound.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.classnotfound.model.Vote;
+import be.kdg.prog3.classnotfound.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.classnotfound.persistence.VoteRepository;
 import be.kdg.prog3.classnotfound.security.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class VoteController {
             }
             else {
                 if (vote.isUp() == upOrDown.equals("up")) {
-                    // TODO: throw exception "this exact vote already exists"
+                    throw new DuplicateVoteCastException("This vote was already cast.");
                 }
                 vote.setUp(upOrDown.equals("up"));
                 modifier = 2;
@@ -47,7 +50,7 @@ public class VoteController {
             this.questionAnswerRepository.save(qa);
         }
         else {
-            // TODO: exception handling
+            throw new QuestionNotFoundException("Couldn't find this question.");
         }
     }
 
@@ -64,11 +67,11 @@ public class VoteController {
                 this.questionAnswerRepository.save(qa);
             }
             else {
-                // TODO: exception handling
+                throw new QuestionNotFoundException("Couldn't find this question.");
             }
         }
         else {
-            // TODO: exception handling
+            throw new VoteNotFoundException("Couldn't find this vote.");
         }
     }
 }
