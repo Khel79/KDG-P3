@@ -53,4 +53,8 @@ public class Vote {
     public void setUp(boolean up) {
         isUp = up;
     }
+
+    public QuestionAnswer getQuestionAnswer() {
+        return questionAnswer;
+    }
 }
