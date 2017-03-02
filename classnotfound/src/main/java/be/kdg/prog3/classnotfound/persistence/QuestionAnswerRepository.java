@@ -1,5 +1,6 @@
-package be.kdg.prog3.classnotfound.model;
+package be.kdg.prog3.classnotfound.persistence;
 
+import be.kdg.prog3.classnotfound.model.QuestionAnswer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 

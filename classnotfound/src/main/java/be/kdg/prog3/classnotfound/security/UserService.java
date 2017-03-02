@@ -1,7 +1,7 @@
 package be.kdg.prog3.classnotfound.security;
 
 import be.kdg.prog3.classnotfound.model.User;
-import be.kdg.prog3.classnotfound.model.UserRepository;
+import be.kdg.prog3.classnotfound.persistence.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

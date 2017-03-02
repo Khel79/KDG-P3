@@ -1,7 +1,7 @@
 package be.kdg.prog3.classnotfound.controller;
 
 import be.kdg.prog3.classnotfound.model.QuestionAnswer;
-import be.kdg.prog3.classnotfound.model.QuestionAnswerRepository;
+import be.kdg.prog3.classnotfound.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.classnotfound.security.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

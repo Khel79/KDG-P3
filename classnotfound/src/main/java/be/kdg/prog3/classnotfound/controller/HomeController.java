@@ -1,7 +1,7 @@
 package be.kdg.prog3.classnotfound.controller;
 
 import be.kdg.prog3.classnotfound.model.QuestionAnswer;
-import be.kdg.prog3.classnotfound.model.QuestionAnswerRepository;
+import be.kdg.prog3.classnotfound.persistence.QuestionAnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

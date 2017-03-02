@@ -1,6 +1,6 @@
 package be.kdg.prog3.classnotfound.configuration;
 
-import be.kdg.prog3.classnotfound.model.UserRepository;
+import be.kdg.prog3.classnotfound.persistence.UserRepository;
 import be.kdg.prog3.classnotfound.security.LoginSuccessHandler;
 import be.kdg.prog3.classnotfound.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
