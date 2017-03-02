@@ -5,6 +5,7 @@
 <head>
     <thymeleaf th:replace="includes :: meta_link" />
     <title>New Question</title>
+    <thymeleaf th:replace="includes :: script" />
 </head>
 <body>
     <nav th:replace="includes :: header(page='new')"></nav>
@@ -30,7 +31,5 @@
             </div>
         </div>
     </div>
-
-    <thymeleaf th:replace="includes :: script" />
 </body>
 </html>

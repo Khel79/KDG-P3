@@ -14,6 +14,11 @@
         <link rel="stylesheet" th:href="@{/client/bootstrap-3.3.7-dist/css/bootstrap-theme.css}" />
         <link rel="stylesheet" th:href="@{/client/css/style.css}" />
     </thymeleaf>
+
+    <thymeleaf th:fragment="script" th:remove="tag">
+        <script th:src="@{/client/jquery/jquery-3.1.0.js}" th:defer="defer"></script>
+        <script th:src="@{/client/bootstrap-3.3.7-dist/js/bootstrap.js}" th:defer="defer"></script>
+    </thymeleaf>
 </head>
 <body>
     <nav th:fragment="header" class="navbar navbar-default">
@@ -36,10 +41,5 @@
             </div>
         </div>
     </nav>
-
-    <thymeleaf th:fragment="script" th:remove="tag">
-        <script th:src="@{/client/jquery/jquery-3.1.0.js}"></script>
-        <script th:src="@{/client/bootstrap-3.3.7-dist/js/bootstrap.js}"></script>
-    </thymeleaf>
 </body>
 </html>
