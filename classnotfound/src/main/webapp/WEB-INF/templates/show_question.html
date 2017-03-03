@@ -14,10 +14,13 @@
     <div class="container">
         <div class="row-fluid">
             <div class="col-md-2" th:id="'question_' + ${question.id}">
-                <h3>
-                    <a href="" class="down">&ddarr;</a>
+                <!-- /*
+                TODO: See notes in index.html. A DTO should be used here.
+                */ -->
+                <h3 th:with="currentVote=${votes.^[questionAnswer.id == __${question.id}__]}">
+                    <a href="" class="down" th:classappend="${currentVote != null and not currentVote.up} ? selectedDown : ''">&ddarr;</a>
                     <span th:text="${question.score}"></span>
-                    <a href="" class="up">&uuarr;</a>
+                    <a href="" class="up" th:classappend="${currentVote != null and currentVote.up} ? selectedUp : ''">&uuarr;</a>
                 </h3>
             </div>
             <div class="col-md-10">
@@ -33,10 +36,13 @@
 
         <div th:each="answer : ${answers}" class="row-fluid">
             <div class="col-md-2" th:id="'answer_' + ${answer.id}">
-                <h4>
-                    <a href="" class="down">&ddarr;</a>
+                <!-- /*
+                TODO: See notes in index.html. A DTO should be used here.
+                */ -->
+                <h4 th:with="currentVote=${votes.^[questionAnswer.id == __${answer.id}__]}">
+                    <a href="" class="down" th:classappend="${currentVote != null and not currentVote.up} ? selectedDown : ''">&ddarr;</a>
                     <span th:text="${answer.score}"></span>
-                    <a href="" class="up">&uuarr;</a>
+                    <a href="" class="up" th:classappend="${currentVote != null and currentVote.up} ? selectedUp : ''">&uuarr;</a>
                 </h4>
             </div>
             <div class="col-md-10">
