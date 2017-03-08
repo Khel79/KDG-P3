@@ -3,7 +3,7 @@ package be.kdg.prog3.cycling.controller;
 import be.kdg.prog3.cycling.controller.dto.DtoAssembler;
 import be.kdg.prog3.cycling.controller.dto.TeamDto;
 import be.kdg.prog3.cycling.model.Team;
-import be.kdg.prog3.cycling.model.TeamRepository;
+import be.kdg.prog3.cycling.persistence.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
