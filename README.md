@@ -2,8 +2,6 @@
 
 In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke directory bevat een afzonderlijk IntelliJ IDEA project. Alle projecten zijn voorzien van een [Gradle](https://gradle.org/) wrapper.
 
-Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
-
 ## Week 1
 
 - [basicservlet](basicservlet)
@@ -64,29 +62,29 @@ Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
 
   Drie Spring MVC controllers worden gebruikt om de parameters en return types van controller-methods te illustreren.
 
-- [cycling](cycling) ![Spring Boot][spring_boot]
+- [cycling](cycling) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
 
   Een spring MVC applicatie met achterliggend twee tabellen in een H2 databank.
 
 ## Week 5
 
-- [form](form)
+- [form](form) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
 
-  Spring form met validatie. i18n wordt toegepast op het formulier (JSP/JSTL) en de validatie-berichten.
+  Spring form met validatie. i18n wordt toegepast op het formulier (JSP/JSTL) en de validatie-berichten. Gebruikt Hibernate om form-validatie te doen.
 
-- [cycling_orika](cycling_orika)
+- [cycling_orika](cycling_orika) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
 
   De cycling applicatie van week 4, uitgebreid met Orika bean mapping (en enkele extra tabellen). Eveneens omgezet naar Spring Boot.
 
 ## Geintegreerd project
 
-- [classnotfound](classnotfound)
+- [classnotfound](classnotfound) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
 
-  Een eenvoudige website waar je vragen kan stellen, beantwoorden en up/downvoten (a la StackOverflow of reddit). Gebruikt Spring MVC met Thymeleaf en Hibernate.
+  Een website waar je vragen kan stellen, beantwoorden en up/downvoten (a la StackOverflow of reddit).
 
-- [repaircafe](repaircafe)
+- [repaircafe](repaircafe) ![Spring][spring] ![Hibernate][hibernate]
 
-  Het grote Repair Cafe project dat beschreven wordt op de [website van programmeren 3](https://programmeren3-repaircafe.rhcloud.com/).
+  Het Repair Cafe project dat beschreven wordt op de [website van programmeren 3](https://programmeren3-repaircafe.rhcloud.com/).
 
 ## Roadmaps
 
@@ -94,10 +92,11 @@ Dit zijn de projecten (min of meer) gesorteerd volgens moeilijkheid:
 
   Demo-project met allerhande kleine Java EE klassen (geen Spring). Naar deze demo's wordt gerefereerd als "WebApps103" in de roadmap [Java Web Applicatie RM](https://programmeren3-repaircafe.rhcloud.com/road-maps/jwa-rm/).
 
-- [hardware_shop](hardware_shop)
+- [hardware_shop](hardware_shop) ![Spring][spring] ![Hibernate][hibernate]
 
   Het start-project voor het maken van de [Hardware Shop](https://programmeren3-repaircafe.rhcloud.com/road-maps/hardware-shop-roadmap-1/).
 
 [spring]: images/spring-logo_22_22.png
 [spring_boot]: images/spring-boot-logo_24_22.png
 [thymeleaf]: images/thymeleaf-logo_22_22.png
+[hibernate]: images/hibernate-logo_22_22.png
