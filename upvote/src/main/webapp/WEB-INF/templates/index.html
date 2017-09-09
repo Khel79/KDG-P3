@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <thymeleaf th:replace="includes :: meta_link" />
+    <title>Upvote - Home</title>
+    <thymeleaf th:replace="includes :: script" />
+    <script th:src="@{/client/js/vote.js}" th:defer="defer"></script>
+</head>
+<body>
+    <nav th:replace="includes :: header(page='home')"></nav>
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <h2>Popular questions</h2>
+
+                <table class="table table-hover">
+                    <tr><th class="scoreColumn">Score</th><th>Question</th></tr>
+                    <tr th:each="question : ${questions}" th:id="'question_' + ${question.id}">
+                        <!-- /*
+                        This is quite a construct and not at all performant.
+                        TODO: once a proper DTO is in place, the DTO should have a field that represents an upvote or downvote (or nothing) for the current user.
+                        What this code actually does: select the first (^) vote from the list called votes where the id
+                        of the QA is equal to the ID of the current question that we're showing here.
+                        */ -->
+                        <td class="scoreColumn" th:with="currentVote=${votes.^[questionAnswer.id == __${question.id}__]}">
+                            <a href="" class="down" th:classappend="${currentVote != null and not currentVote.up} ? selectedDown : ''">&ddarr;</a>
+                            <span th:text="${question.score}"></span>
+                            <a href="" class="up" th:classappend="${currentVote != null and currentVote.up} ? selectedUp : ''">&uuarr;</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/q/{id}(id=${question.id})}" th:text="${question.subject}" class="subject"></a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</body>
+</html>
