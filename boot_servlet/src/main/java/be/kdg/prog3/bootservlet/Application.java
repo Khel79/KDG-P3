@@ -1,4 +1,4 @@
-package be.kdg.prog3.bootservlet.config;
+package be.kdg.prog3.bootservlet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
