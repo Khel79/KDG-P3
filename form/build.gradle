@@ -6,7 +6,7 @@ apply plugin: 'org.springframework.boot'
 
 buildscript {
     ext {
-        springBootVersion = '1.5.1.RELEASE'
+        springBootVersion = '1.5.6.RELEASE'
         jasperVersion = '8.5.5'
         jstlVersion = '1.2'
         hibernateValidatorVersion = '5.4.0.Final'
@@ -35,5 +35,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.3'
+    gradleVersion = '4.1'
 }
