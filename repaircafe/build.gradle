@@ -17,20 +17,21 @@ repositories {
 }
 
 dependencies {
-    compile(group: 'org.springframework', name: 'spring-core')
-    compile(group: 'org.springframework', name: 'spring-context')
-    compile(group: 'org.springframework', name: 'spring-orm')
-    compile(group: 'org.hibernate', name: 'hibernate-entitymanager')
-    compile(group: 'org.springframework', name: 'spring-test')
-    compile(group: 'org.springframework.data', name: 'spring-data-jpa')
-    compile(group: 'org.springframework', name: 'spring-web')
-    compile(group: 'org.springframework', name: 'spring-webmvc')
+    compile(group: 'org.springframework', name: 'spring-core', version: '4.3.10.RELEASE')
+    compile(group: 'org.springframework', name: 'spring-context', version: '4.3.10.RELEASE')
+    compile(group: 'org.springframework', name: 'spring-orm', version: '4.3.10.RELEASE')
+    compile(group: 'org.hibernate', name: 'hibernate-core', version: '5.2.10.Final')
+    compile(group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.10.Final')
+    compile(group: 'org.springframework', name: 'spring-test', version: '4.3.10.RELEASE')
+    compile(group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.6.RELEASE')
+    compile(group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE')
+    compile(group: 'org.springframework', name: 'spring-webmvc', version: '4.3.10.RELEASE')
     compile(group: 'org.springframework.security', name: 'spring-security-core', version: '4.0.0.RELEASE')
     compile(group: 'org.springframework.security', name: 'spring-security-web', version: '4.0.0.RELEASE')
     compile(group: 'org.springframework.security', name: 'spring-security-config', version: '4.0.0.RELEASE')
-    compile(group: 'org.springframework.hateoas', name: 'spring-hateoas')
-    compile(group: 'org.springframework.data', name: 'spring-data-rest-webmvc')
-    compile(group: 'com.h2database', name: 'h2')
+    compile(group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '0.23.0.RELEASE')
+    compile(group: 'org.springframework.data', name: 'spring-data-rest-webmvc', version: '2.6.6.RELEASE')
+    compile(group: 'com.h2database', name: 'h2', version: '1.4.196')
 
     // Extra dependencies
     compile(group: 'org.jadira.usertype', name: 'usertype.core', version: '3.2.0.GA')

@@ -15,7 +15,7 @@ public class RestConfig extends RepositoryRestMvcConfiguration
     public RepositoryRestConfiguration config()
     {
         RepositoryRestConfiguration config = super.config();
-        config.setBaseUri("/api");
+        config.setBasePath("/api");
         return config;
     }
 }
