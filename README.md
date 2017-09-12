@@ -26,11 +26,11 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 2
 
-## Week 3
-
 - [di](di) ![Spring][spring]
 
   Dependency Injection voorbeelden geimplementeerd met Spring (geen Web).
+
+## Week 3
 
 - [spring_mvc_account](spring_mvc_account) ![Spring Boot][spring_boot]
 
