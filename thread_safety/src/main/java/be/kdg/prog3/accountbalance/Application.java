@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
-@ServletComponentScan("be.kdg.prog3.accountbalance")
+@ServletComponentScan("be.kdg.prog3.accountbalance.servlets")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

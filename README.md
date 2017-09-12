@@ -20,11 +20,11 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
   Een RequestDispatcher (forwarding) en een redirecting voorbeeld.
 
-## Week 2
-
 - [thread_safety](thread_safety) ![Spring Boot][spring_boot]
 
-  Enkele kleine servlets die de problematiek rond thread safety illustreren.
+  Enkele servlets die de problematiek rond thread safety illustreren.
+
+## Week 2
 
 - [session](session) ![Spring Boot][spring_boot]
 

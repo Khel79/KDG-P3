@@ -1,4 +1,6 @@
-package be.kdg.prog3.accountbalance;
+package be.kdg.prog3.accountbalance.servlets;
+
+import be.kdg.prog3.accountbalance.model.DepositCount;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
