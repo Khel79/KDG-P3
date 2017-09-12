@@ -4,25 +4,21 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 1
 
-- [basicservlet](basicservlet)
+- [boot_servlet](boot_servlet) ![Spring Boot][spring_boot]
 
-  Een eenvoudig servlet in een Gradle project met embedded Tomcat.
+  Klassieke servlets opgestart via Spring Boot.
 
 - [listeners](listeners) ![Spring Boot][spring_boot]
 
-  Een eenvoudig voorbeeld van een servlet context listener.
+  Een voorbeeld van een servlet context listener.
 
 - [filters](filters) ![Spring Boot][spring_boot]
 
-  Een eenvoudig voorbeeld van filters.
+  Een voorbeeld van filters.
 
 - [dispatch](dispatch) ![Spring Boot][spring_boot]
 
-  Een eenvoudig RequestDispatcher voorbeeld.
-
-- [boot_servlet](boot_servlet) ![Spring Boot][spring_boot]
-
-  De meest eenvoudige servlets geimplementeerd met Spring Boot.
+  Een RequestDispatcher (forwarding) en een redirecting voorbeeld.
 
 ## Week 2
 
