@@ -26,18 +26,6 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 2
 
-- [session](session) ![Spring Boot][spring_boot]
-
-  Een voorbeeld van het aanmaken en raadplegen van een sessie.
-
-- [blog_jsp](blog_jsp)
-
-  Het [dispatch](dispatch) voorbeeld omgezet naar JSP anno 1999-2000.
-
-- [blog_jstl](blog_jstl) ![Spring Boot][spring_boot]
-
-  Het [dispatch](dispatch) voorbeeld omgezet naar een eenvoudige JSP/JSTL pagina.
-
 ## Week 3
 
 - [di](di) ![Spring][spring]
@@ -48,7 +36,7 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
   Een heel eenvoudig Spring MVC voorbeeld waarvan de view kant is gebouwd met JSP.
 
-- **Extra:** [smvc_thymeleaf_account](smvc_thymeleaf_account) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
+- [smvc_thymeleaf_account](smvc_thymeleaf_account) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
 
   Spring MVC met Thymeleaf.
 
