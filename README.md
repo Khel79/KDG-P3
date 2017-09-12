@@ -32,10 +32,6 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 3
 
-- [spring_mvc_account](spring_mvc_account) ![Spring Boot][spring_boot]
-
-  Een heel eenvoudig Spring MVC voorbeeld waarvan de view kant is gebouwd met JSP.
-
 - [smvc_thymeleaf_account](smvc_thymeleaf_account) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
 
   Spring MVC met Thymeleaf.
