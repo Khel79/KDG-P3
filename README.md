@@ -26,15 +26,15 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 2
 
+- [mvc_account](mvc_account) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
+
+  Spring MVC met Thymeleaf.
+
 - [di](di) ![Spring][spring]
 
   Dependency Injection voorbeelden geimplementeerd met Spring (geen Web).
 
 ## Week 3
-
-- [smvc_thymeleaf_account](smvc_thymeleaf_account) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
-
-  Spring MVC met Thymeleaf.
 
 ## Week 4
 
@@ -61,10 +61,6 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 - [upvote](upvote) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
 
   Een website waar je vragen kan stellen, beantwoorden en up/downvoten (a la StackOverflow of reddit).
-
-- [repaircafe](repaircafe) ![Spring][spring] ![Hibernate][hibernate]
-
-  Het Repair Cafe project dat beschreven wordt op de [website van programmeren 3](https://programmeren3-repaircafe.rhcloud.com/).
 
 ## Roadmaps
 
