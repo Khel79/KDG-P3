@@ -1,4 +1,4 @@
-package be.kdg.prog3.filters;
+package be.kdg.prog3.filters.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
