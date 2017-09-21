@@ -4,6 +4,7 @@ import be.kdg.prog3.account.model.Account;
 import be.kdg.prog3.account.model.Accounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,13 @@ public class AccountController {
     }
 
     @GetMapping("/accounts/{accountOwner}")
+    public String showAccountBalance(@PathVariable String accountOwner, ModelMap modelMap) {
+        final Account account = this.accounts.get(accountOwner);
+        modelMap.addAttribute("account", account);
+        return "showAccountBalance";
+    }
+
+    /*@GetMapping("/accounts/{accountOwner}")
     public ModelAndView showAccountBalance(@PathVariable String accountOwner) {
         final Account account = this.accounts.get(accountOwner);
 
@@ -36,7 +44,7 @@ public class AccountController {
         modelAndView.setViewName("showAccountBalance");
         modelAndView.getModel().put("account", account);
         return modelAndView;
-    }
+    }*/
 
     @GetMapping("/api/accounts")
     @ResponseBody
