@@ -17,17 +17,15 @@ public class AccountController {
         this.accounts = accounts;
     }
 
-    @GetMapping("/show")
+    @GetMapping("/accounts")
     public ModelAndView showAccountBalance() {
-        final Account marcelAccount = this.accounts.get("Marcel");
-
         final ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("showAccountBalance");
-        modelAndView.getModel().put("account", marcelAccount);
+        modelAndView.setViewName("showAllAccounts");
+        modelAndView.getModel().put("accounts", this.accounts);
         return modelAndView;
     }
 
-    @GetMapping("/show/{accountOwner}")
+    @GetMapping("/accounts/{accountOwner}")
     public ModelAndView showAccountBalance(@PathVariable String accountOwner) {
         final Account account = this.accounts.get(accountOwner);
 

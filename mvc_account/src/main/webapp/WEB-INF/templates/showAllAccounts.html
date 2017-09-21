@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>All Accounts</title>
+</head>
+<body>
+    <h3>All Accounts</h3>
+    <p th:each="account : ${accounts.getAll()}">
+        <a th:href="@{/accounts/{owner}(owner=${account.getOwner()})}" th:text="${account.getOwner()}">UNKNOWN</a>
+    </p>
+</body>
+</html>

@@ -2,6 +2,7 @@ package be.kdg.prog3.account.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,5 +26,9 @@ public class Accounts {
 
     public Account get(String accountName) {
         return this.accounts.get(accountName);
+    }
+
+    public Collection<Account> getAll() {
+        return this.accounts.values();
     }
 }
