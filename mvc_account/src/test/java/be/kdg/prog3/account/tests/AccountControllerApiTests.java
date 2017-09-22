@@ -32,7 +32,7 @@ public class AccountControllerApiTests {
     private MockMvc mvc;
 
     @Test
-    public void testAccountsViewName() throws Exception {
+    public void testAllAccounts() throws Exception {
         final List<Account> accounts = new ArrayList<>();
         accounts.add(new Account("Ronny"));
         accounts.add(new Account("Richard"));
@@ -48,7 +48,7 @@ public class AccountControllerApiTests {
     }
 
     @Test
-    public void testAccountPage() throws Exception {
+    public void testOneAccount() throws Exception {
         final Account marcelAccount = new Account("Andy");
         marcelAccount.setBalance(123.0);
         given(this.accounts.get("Andy")).willReturn(marcelAccount);
