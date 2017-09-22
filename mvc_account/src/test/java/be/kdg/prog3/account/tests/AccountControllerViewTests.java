@@ -78,13 +78,13 @@ public class AccountControllerViewTests {
 
     @Test
     public void testAccountPage() throws Exception {
-        final Account marcelAccount = new Account("Andy");
-        marcelAccount.setBalance(123.0);
-        given(this.accounts.get("Andy")).willReturn(marcelAccount);
+        final Account andyAccount = new Account("Andy");
+        andyAccount.setBalance(123.0);
+        given(this.accounts.get("Andy")).willReturn(andyAccount);
 
         this.mvc.perform(get("/accounts/Andy").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Andy")))
-                .andExpect(content().string(containsString("123.0")));
+                .andExpect(content().string(containsString(andyAccount.getOwner())))
+                .andExpect(content().string(containsString(String.valueOf(andyAccount.getBalance()))));
     }
 }
