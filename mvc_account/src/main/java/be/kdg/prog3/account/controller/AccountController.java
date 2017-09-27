@@ -7,10 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Collection;
 
 @Controller
 public class AccountController {
@@ -45,16 +42,4 @@ public class AccountController {
         modelAndView.getModel().put("account", account);
         return modelAndView;
     }*/
-
-    @GetMapping("/api/accounts")
-    @ResponseBody
-    public Collection<Account> getAccounts() {
-        return this.accounts.getAll();
-    }
-
-    @GetMapping("/api/accounts/{accountOwner}")
-    @ResponseBody
-    public Account getAccount(@PathVariable String accountOwner) {
-        return this.accounts.get(accountOwner);
-    }
 }
