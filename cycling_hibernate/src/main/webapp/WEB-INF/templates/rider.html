@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${'Rider ' + rider.name}"></title>
+    </head>
+    <body>
+        <h1 th:text="${rider.name}"></h1>
+        <h2>Date of birth: <span th:text="${rider.dateOfBirth}"></span></h2>
+        <h2>Team: <a th:text="${rider.teamName}" th:href="@{/team/{uciCode}(uciCode=${rider.teamUciCode})}"></a></h2>
+        <h2>Stage wins: <span th:text="${rider.stageWins}"></span></h2>
+    </body>
+</html>
