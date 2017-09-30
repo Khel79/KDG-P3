@@ -56,10 +56,6 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
   Spring form met validatie. i18n wordt toegepast op het formulier (JSP/JSTL) en de validatie-berichten. Gebruikt Hibernate om form-validatie te doen.
 
-- [cycling_orika](cycling_orika) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
-
-  De cycling applicatie van week 4, uitgebreid met Orika bean mapping (en enkele extra tabellen). Eveneens omgezet naar Spring Boot.
-
 ## Geintegreerd project
 
 - [upvote](upvote) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
