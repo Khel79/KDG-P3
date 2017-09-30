@@ -36,15 +36,19 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 3
 
-## Week 4
+- [cycling](cycling) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf]
+
+  Een spring MVC applicatie met DTO's.
 
 - [controllers](controllers) ![Spring Boot][spring_boot]
 
-  Drie Spring MVC controllers worden gebruikt om de parameters en return types van controller-methods te illustreren.
+  Enkele Spring MVC controllers worden gebruikt om de parameters en return types van controller-methods te illustreren. (Opgelet! bevat nog JSP)
 
-- [cycling](cycling) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
+## Week 4
 
-  Een spring MVC applicatie met achterliggend twee tabellen in een H2 databank.
+- [cycling_hibernate](cycling_hibernate) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
+
+  Een spring MVC applicatie met DTO's en achterliggend enkele tabellen in een H2 databank.
 
 ## Week 5
 
