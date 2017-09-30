@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="${'Team ' + team.name}"></title>
+    </head>
+    <body>
+        <h1 th:text="${team.name}"></h1>
+        <h2>UCI code: <span th:text="${team.uciCode}"></span></h2>
+        <h2>Founded: <span th:text="${team.founded}"></span></h2>
+        <hr/>
+        <section th:each="rider : ${team.riders}">
+            <h2><a th:text="${rider.name}" th:href="@{/rider/{riderId}(riderId=${rider.id})}"></a></h2>
+            <h3>Date of birth: <span th:text="${#temporals.format(rider.dateOfBirth, 'yyyy-MM-dd')}"></span></h3>
+            <hr/>
+        </section>
+    </body>
+</html>

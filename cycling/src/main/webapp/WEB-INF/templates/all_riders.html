@@ -16,7 +16,7 @@
             </tr>
             <tr th:each="rider : ${riders}">
                 <td><a th:text="${rider.name}" th:href="@{/rider/{riderId}(riderId=${rider.id})}"></a></td>
-                <td th:text="${rider.dateOfBirth}"></td>
+                <td th:text="${#temporals.format(rider.dateOfBirth, 'yyyy-MM-dd')}"></td>
                 <td th:text="${rider.teamUciCode}"></td>
                 <td th:text="${rider.teamName}"></td>
                 <td th:text="${rider.stageWins}"></td>

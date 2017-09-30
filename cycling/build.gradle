@@ -1,0 +1,35 @@
+group 'be.kdg'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.7.RELEASE'
+        mmVersion = '1.1.0'
+        extrasVersion = '2.1.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootVersion)
+    }
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion)
+    compile(group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-java8time', version: extrasVersion)
+    compile(group: 'org.modelmapper', name: 'modelmapper', version: mmVersion)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2'
+}
