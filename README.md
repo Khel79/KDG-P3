@@ -56,25 +56,12 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 ## Week 5
 
-- [form](form) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
-
-  Spring form met validatie. i18n wordt toegepast op het formulier (JSP/JSTL) en de validatie-berichten. Gebruikt Hibernate om form-validatie te doen.
 
 ## Geintegreerd project
 
 - [upvote](upvote) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
 
   Een website waar je vragen kan stellen, beantwoorden en up/downvoten (a la StackOverflow of reddit).
-
-## Roadmaps
-
-- [webapp](webapp)
-
-  Demo-project met allerhande kleine Java EE klassen (geen Spring). Naar deze demo's wordt gerefereerd als "WebApps103" in de roadmap [Java Web Applicatie RM](https://programmeren3-repaircafe.rhcloud.com/road-maps/jwa-rm/).
-
-- [hardware_shop](hardware_shop) ![Spring][spring] ![Hibernate][hibernate]
-
-  Het start-project voor het maken van de [Hardware Shop](https://programmeren3-repaircafe.rhcloud.com/road-maps/hardware-shop-roadmap-1/).
 
 [spring]: images/spring-logo_22_22.png
 [spring_boot]: images/spring-boot-logo_24_22.png
