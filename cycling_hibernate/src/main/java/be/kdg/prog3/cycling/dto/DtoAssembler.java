@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Component
 public class DtoAssembler {
@@ -38,9 +37,8 @@ public class DtoAssembler {
         return mapper.map(rider, RiderDto.class);
     }
 
-    public List<RiderDto> toRiderResources(Iterable<? extends Rider> entities) {
-        return StreamSupport
-                .stream(entities.spliterator(), false)
+    public List<RiderDto> toRiderResources(List<? extends Rider> entities) {
+        return entities.stream()
                 .map(this::toResource)
                 .collect(Collectors.toList());
     }
@@ -49,9 +47,8 @@ public class DtoAssembler {
         return mapper.map(team, TeamDto.class);
     }
 
-    public List<TeamDto> toTeamResources(Iterable<? extends Team> entities) {
-        return StreamSupport
-                .stream(entities.spliterator(), false)
+    public List<TeamDto> toTeamResources(List<? extends Team> entities) {
+        return entities.stream()
                 .map(this::toResource)
                 .collect(Collectors.toList());
     }

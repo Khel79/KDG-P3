@@ -1,9 +1,9 @@
-package be.kdg.prog3.cycling.controller;
+package be.kdg.prog3.cycling.controllers;
 
 import be.kdg.prog3.cycling.dto.DtoAssembler;
 import be.kdg.prog3.cycling.dto.TeamDto;
 import be.kdg.prog3.cycling.model.Team;
-import be.kdg.prog3.cycling.persistence.TeamRepository;
+import be.kdg.prog3.cycling.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +14,18 @@ import java.util.List;
 
 @Controller
 public class TeamController {
-    private final TeamRepository teamRepository;
+    private final TeamService teamService;
     private final DtoAssembler dtoAssembler;
 
     @Autowired
-    public TeamController(TeamRepository teamRepository, DtoAssembler dtoAssembler) {
-        this.teamRepository = teamRepository;
+    public TeamController(TeamService teamService, DtoAssembler dtoAssembler) {
+        this.teamService = teamService;
         this.dtoAssembler = dtoAssembler;
     }
 
     @GetMapping({"/", "/teams"})
     public ModelAndView showAllTeams() {
-        final Iterable<Team> teams = teamRepository.findAll();
+        final List<Team> teams = teamService.findAll();
         final List<TeamDto> teamDtos = this.dtoAssembler.toTeamResources(teams);
 
         final ModelAndView modelAndView = new ModelAndView();
@@ -36,7 +36,7 @@ public class TeamController {
 
     @GetMapping("/team/{uciCode}")
     public ModelAndView showTeam(@PathVariable String uciCode) {
-        final Team team = teamRepository.findByUciCode(uciCode);
+        final Team team = teamService.findByUciCode(uciCode);
         final TeamDto teamDto = this.dtoAssembler.toResource(team);
 
         final ModelAndView modelAndView = new ModelAndView();
