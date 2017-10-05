@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>All Teams</title>
+    </head>
+    <body>
+        <section th:each="team : ${teams}">
+            <h1><a th:text="${team.name}" th:href="@{/team/{uciCode}(uciCode=${team.uciCode})}"></a></h1>
+            <h2>UCI code: <span th:text="${team.uciCode}"></span></h2>
+            <h2>Founded: <span th:text="${team.founded}"></span></h2>
+            <hr/>
+        </section>
+    </body>
+</html>

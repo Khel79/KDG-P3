@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>All Riders</title>
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Team Code</th>
+                <th>Team Name</th>
+                <th>Stage Wins</th>
+            </tr>
+            <tr th:each="rider : ${riders}">
+                <td><a th:text="${rider.name}" th:href="@{/rider/{riderId}(riderId=${rider.id})}"></a></td>
+                <td th:text="${rider.dateOfBirth}"></td>
+                <td th:text="${rider.teamUciCode}"></td>
+                <td th:text="${rider.teamName}"></td>
+                <td th:text="${rider.stageWins}"></td>
+            </tr>
+        </table>
+    </body>
+</html>

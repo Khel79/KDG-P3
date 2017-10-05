@@ -1,0 +1,38 @@
+group 'be.kdg'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.7.RELEASE'
+        h2Version = '1.4.192'
+        mmVersion = '1.1.0'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootVersion)
+    }
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: springBootVersion)
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion)
+
+    compile(group: 'com.h2database', name: 'h2', version: h2Version)
+
+    compile(group: 'org.modelmapper', name: 'modelmapper', version: mmVersion)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2'
+}

@@ -50,6 +50,10 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
   Een spring MVC applicatie met DTO's en achterliggend enkele tabellen in een H2 databank.
 
+- [cycling_hibernate_db_first](cycling_hibernate_db_first) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
+
+  **Extra:** Een spring MVC applicatie waarbij de achterliggende databank wordt opgezet m.b.v. SQL scripts.
+
 ## Week 5
 
 - [form](form) ![Spring Boot][spring_boot] ![Hibernate][hibernate]
