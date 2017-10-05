@@ -7,10 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "STAGE_RESULT")
+@Entity(name = "STAGE_RESULT")
 public class StageResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

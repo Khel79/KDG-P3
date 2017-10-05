@@ -17,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table
 public class Rider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
