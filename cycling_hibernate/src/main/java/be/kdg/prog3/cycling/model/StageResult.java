@@ -10,22 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "STAGE_RESULT")
+@Table
 public class StageResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column
     private long id;
 
-    @Column(name = "FINISH_PLACE")
+    @Column
     private short finishPlace;
 
     @ManyToOne
-    @JoinColumn(name = "STAGE_ID", nullable = false)
+    @JoinColumn(nullable = false)
     private Stage stage;
 
     @ManyToOne
-    @JoinColumn(name = "RIDER_ID", nullable = false)
+    @JoinColumn(nullable = false)
     private Rider rider;
 
     protected StageResult() {

@@ -12,20 +12,20 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "TEAM")
+@Table
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column
     private long id;
 
-    @Column(name = "NAME", length=50, nullable = false)
+    @Column(length=50, nullable = false)
     private String name;
 
-    @Column(name = "UCI_CODE", length=3, nullable = false, columnDefinition="char(3)")
+    @Column(length=3, nullable = false, columnDefinition="char(3)")
     private String uciCode;
 
-    @Column(name = "YEAR_FOUNDED", nullable = false)
+    @Column(nullable = false)
     private short founded;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

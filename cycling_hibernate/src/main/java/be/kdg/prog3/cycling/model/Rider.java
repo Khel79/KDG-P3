@@ -17,22 +17,22 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "RIDER")
+@Table
 public class Rider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column
     private long id;
 
-    @Column(name = "NAME", length=50, nullable = false)
+    @Column(length=50, nullable = false)
     private String name;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "DATE_OF_BIRTH", nullable = false)
+    @Column(nullable = false)
     private Date dateOfBirth;
 
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID", nullable = false)
+    @JoinColumn(nullable = false)
     private Team team;
 
     @OneToMany(mappedBy = "rider", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

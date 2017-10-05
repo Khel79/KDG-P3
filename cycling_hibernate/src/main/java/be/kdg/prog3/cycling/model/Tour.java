@@ -12,14 +12,14 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "TOUR")
+@Table
 public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column
     private long id;
 
-    @Column(name = "YEAR", nullable = false)
+    @Column(nullable = false)
     private short year;
 
     @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

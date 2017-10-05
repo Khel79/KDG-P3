@@ -14,18 +14,18 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "STAGE")
+@Table
 public class Stage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column
     private long id;
 
-    @Column(name = "SEQ", nullable = false)
+    @Column(nullable = false)
     private byte sequence;
 
     @ManyToOne
-    @JoinColumn(name = "TOUR_ID", nullable = false)
+    @JoinColumn(nullable = false)
     private Tour tour;
 
     @OneToMany(mappedBy = "stage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
