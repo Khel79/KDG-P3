@@ -1,19 +1,18 @@
 package be.kdg.prog3.upvote.security;
 
-import be.kdg.prog3.upvote.model.User;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
 public class CustomUserDetails extends org.springframework.security.core.userdetails.User {
-    private final User user;
+    private final long userId;
 
-    public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
-        super(user.getName(), user.getPassword(), authorities);
-        this.user = user;
+    public CustomUserDetails(String userName, String password, long userId, Collection<? extends GrantedAuthority> authorities) {
+        super(userName, password, authorities);
+        this.userId = userId;
     }
 
-    public User getUser() {
-        return user;
+    public long getUserId() {
+        return this.userId;
     }
 }

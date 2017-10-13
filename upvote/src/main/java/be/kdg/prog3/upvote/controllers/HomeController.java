@@ -30,7 +30,7 @@ public class HomeController {
         final List<QuestionAnswer> homepageQuestions = questionAnswerRepository.findTop10ByParentIsNullOrderByTimestampDesc();
         final List<Vote> votes;
         if (userDetails != null) {
-            votes = voteRepository.findByQuestionAnswerInAndUserId(homepageQuestions, userDetails.getUser().getId());
+            votes = voteRepository.findByQuestionAnswerInAndUserId(homepageQuestions, userDetails.getUserId());
         }
         else {
             votes = new ArrayList<>();

@@ -1,8 +1,10 @@
 package be.kdg.prog3.upvote.controllers;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
+import be.kdg.prog3.upvote.model.User;
 import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
+import be.kdg.prog3.upvote.persistence.UserRepository;
 import be.kdg.prog3.upvote.persistence.VoteRepository;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,29 +25,31 @@ import java.util.List;
 public class QuestionAnswerController {
     private QuestionAnswerRepository questionAnswerRepository;
     private VoteRepository voteRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public QuestionAnswerController(QuestionAnswerRepository questionAnswerRepository, VoteRepository voteRepository) {
+    public QuestionAnswerController(QuestionAnswerRepository questionAnswerRepository, VoteRepository voteRepository, UserRepository userRepository) {
         this.questionAnswerRepository = questionAnswerRepository;
         this.voteRepository = voteRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/q/{questionId}")
     public ModelAndView showQuestion(@PathVariable long questionId, @AuthenticationPrincipal CustomUserDetails userDetails) {
         QuestionAnswer question = questionAnswerRepository.findOne(questionId);
         if (question != null) {
-            List<QuestionAnswer> answers = questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
+            final List<QuestionAnswer> answers = questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
             final List<Vote> votes;
             if (userDetails != null) {
-                List<QuestionAnswer> qAndAs = new ArrayList<>(answers);
+                final List<QuestionAnswer> qAndAs = new ArrayList<>(answers);
                 qAndAs.add(question);
-                votes = voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userDetails.getUser().getId());
+                votes = voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userDetails.getUserId());
             }
             else {
                 votes = new ArrayList<>();
             }
 
-            ModelAndView modelAndView = new ModelAndView();
+            final ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("show_question");
             modelAndView.getModel().put("question", question);
             modelAndView.getModel().put("answers", answers);
@@ -74,7 +78,8 @@ public class QuestionAnswerController {
     @PostMapping("/q")
     public String addQuestion(@RequestParam String subject, @RequestParam String body,
                               @AuthenticationPrincipal CustomUserDetails userDetails) {
-        QuestionAnswer questionAnswer = new QuestionAnswer(subject, body, userDetails.getUser());
+        final User user = this.userRepository.findOne(userDetails.getUserId());
+        QuestionAnswer questionAnswer = new QuestionAnswer(subject, body, user);
         questionAnswer = questionAnswerRepository.save(questionAnswer);
 
         return "redirect:/q/" + questionAnswer.getId();
@@ -83,8 +88,9 @@ public class QuestionAnswerController {
     @PostMapping("/a")
     public String addAnswer(@RequestParam String body, @RequestParam long parentId,
                               @AuthenticationPrincipal CustomUserDetails userDetails) {
-        QuestionAnswer parent = questionAnswerRepository.findOne(parentId);
-        QuestionAnswer questionAnswer = new QuestionAnswer(body, userDetails.getUser(), parent);
+        final User user = this.userRepository.findOne(userDetails.getUserId());
+        final QuestionAnswer parent = questionAnswerRepository.findOne(parentId);
+        final QuestionAnswer questionAnswer = new QuestionAnswer(body, user, parent);
         questionAnswerRepository.save(questionAnswer);
 
         return "redirect:/q/" + parent.getId();
