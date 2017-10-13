@@ -1,12 +1,9 @@
 package be.kdg.prog3.upvote.controllers;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
-import be.kdg.prog3.upvote.model.User;
 import be.kdg.prog3.upvote.model.Vote;
-import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
-import be.kdg.prog3.upvote.persistence.UserRepository;
-import be.kdg.prog3.upvote.persistence.VoteRepository;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
+import be.kdg.prog3.upvote.services.QuestionAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,27 +20,23 @@ import java.util.List;
 
 @Controller
 public class QuestionAnswerController {
-    private QuestionAnswerRepository questionAnswerRepository;
-    private VoteRepository voteRepository;
-    private UserRepository userRepository;
+    private QuestionAnswerService questionAnswerService;
 
     @Autowired
-    public QuestionAnswerController(QuestionAnswerRepository questionAnswerRepository, VoteRepository voteRepository, UserRepository userRepository) {
-        this.questionAnswerRepository = questionAnswerRepository;
-        this.voteRepository = voteRepository;
-        this.userRepository = userRepository;
+    public QuestionAnswerController(QuestionAnswerService questionAnswerService) {
+        this.questionAnswerService = questionAnswerService;
     }
 
     @GetMapping("/q/{questionId}")
     public ModelAndView showQuestion(@PathVariable long questionId, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        QuestionAnswer question = questionAnswerRepository.findOne(questionId);
+        // TODO: refactor... there's too much business logic here...
+        QuestionAnswer question = this.questionAnswerService.getQuestion(questionId);
         if (question != null) {
-            final List<QuestionAnswer> answers = questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
+            final List<QuestionAnswer> answers = this.questionAnswerService.getQuestionAnswers(question);
             final List<Vote> votes;
             if (userDetails != null) {
-                final List<QuestionAnswer> qAndAs = new ArrayList<>(answers);
-                qAndAs.add(question);
-                votes = voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userDetails.getUserId());
+                answers.add(question);
+                votes = this.questionAnswerService.getVotesByUser(answers, userDetails.getUserId());
             }
             else {
                 votes = new ArrayList<>();
@@ -78,21 +71,14 @@ public class QuestionAnswerController {
     @PostMapping("/q")
     public String addQuestion(@RequestParam String subject, @RequestParam String body,
                               @AuthenticationPrincipal CustomUserDetails userDetails) {
-        final User user = this.userRepository.findOne(userDetails.getUserId());
-        QuestionAnswer questionAnswer = new QuestionAnswer(subject, body, user);
-        questionAnswer = questionAnswerRepository.save(questionAnswer);
-
-        return "redirect:/q/" + questionAnswer.getId();
+        long questionId = this.questionAnswerService.saveQuestion(userDetails.getUserId(), subject, body);
+        return "redirect:/q/" + questionId;
     }
 
     @PostMapping("/a")
     public String addAnswer(@RequestParam String body, @RequestParam long parentId,
                               @AuthenticationPrincipal CustomUserDetails userDetails) {
-        final User user = this.userRepository.findOne(userDetails.getUserId());
-        final QuestionAnswer parent = questionAnswerRepository.findOne(parentId);
-        final QuestionAnswer questionAnswer = new QuestionAnswer(body, user, parent);
-        questionAnswerRepository.save(questionAnswer);
-
-        return "redirect:/q/" + parent.getId();
+        final long questionId = this.questionAnswerService.saveAnswer(userDetails.getUserId(), body, parentId);
+        return "redirect:/q/" + questionId;
     }
 }
