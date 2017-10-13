@@ -1,19 +1,24 @@
-package be.kdg.prog3.upvote.security;
+package be.kdg.prog3.upvote.services;
 
 import be.kdg.prog3.upvote.model.User;
 import be.kdg.prog3.upvote.persistence.UserRepository;
+import be.kdg.prog3.upvote.security.CustomUserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -24,7 +29,7 @@ public class UserService implements UserDetailsService {
         if (user != null) {
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-            return new be.kdg.prog3.upvote.security.UserDetails(user, authorities);
+            return new CustomUserDetails(user, authorities);
         }
         else {
             throw new UsernameNotFoundException("User '" + username + "' not found.");

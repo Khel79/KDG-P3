@@ -1,10 +1,10 @@
-package be.kdg.prog3.upvote.controller;
+package be.kdg.prog3.upvote.controllers;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.upvote.persistence.VoteRepository;
-import be.kdg.prog3.upvote.security.UserDetails;
+import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,7 +31,7 @@ public class QuestionAnswerController {
     }
 
     @GetMapping("/q/{questionId}")
-    public ModelAndView showQuestion(@PathVariable long questionId, @AuthenticationPrincipal UserDetails userDetails) {
+    public ModelAndView showQuestion(@PathVariable long questionId, @AuthenticationPrincipal CustomUserDetails userDetails) {
         QuestionAnswer question = questionAnswerRepository.findOne(questionId);
         if (question != null) {
             List<QuestionAnswer> answers = questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
@@ -56,7 +56,7 @@ public class QuestionAnswerController {
             // This would be a good way to handle this:
             throw new HttpServerErrorException(HttpStatus.NOT_FOUND, "QuestionAnswer with ID '" + questionId + "' not found.");
 
-            // Alternatively, let this exception be picked up by AppWideExceptionHandler:
+            // Alternatively, let this exceptions be picked up by AppWideExceptionHandler:
             //throw new QuestionNotFoundException("QuestionAnswer with ID '" + questionId + "' not found.");
         }
     }
@@ -73,7 +73,7 @@ public class QuestionAnswerController {
 
     @PostMapping("/q")
     public String addQuestion(@RequestParam String subject, @RequestParam String body,
-                              @AuthenticationPrincipal UserDetails userDetails) {
+                              @AuthenticationPrincipal CustomUserDetails userDetails) {
         QuestionAnswer questionAnswer = new QuestionAnswer(subject, body, userDetails.getUser());
         questionAnswer = questionAnswerRepository.save(questionAnswer);
 
@@ -82,7 +82,7 @@ public class QuestionAnswerController {
 
     @PostMapping("/a")
     public String addAnswer(@RequestParam String body, @RequestParam long parentId,
-                              @AuthenticationPrincipal UserDetails userDetails) {
+                              @AuthenticationPrincipal CustomUserDetails userDetails) {
         QuestionAnswer parent = questionAnswerRepository.findOne(parentId);
         QuestionAnswer questionAnswer = new QuestionAnswer(body, userDetails.getUser(), parent);
         questionAnswerRepository.save(questionAnswer);

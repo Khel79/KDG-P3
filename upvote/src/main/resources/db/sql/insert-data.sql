@@ -31,7 +31,7 @@ INSERT INTO question_answer (qa_subject, qa_body, qa_score, qa_timestamp, qa_use
   VALUES ('Hoe werkt de @Bean tag?', 'Graag zo snel mogelijk antwoord!', 34, '2016-08-30 16:00:00',
           SELECT use_id FROM user WHERE use_name = 'jos');
 INSERT INTO question_answer (qa_subject, qa_body, qa_score, qa_timestamp, qa_use_id)
-  VALUES ('Wat is een controller?', 'Graag zo snel mogelijk antwoord!', 65, '2016-08-30 09:43:00',
+  VALUES ('Wat is een controllers?', 'Graag zo snel mogelijk antwoord!', 65, '2016-08-30 09:43:00',
           SELECT use_id FROM user WHERE use_name = 'rudy');
 INSERT INTO question_answer (qa_subject, qa_body, qa_score, qa_timestamp, qa_use_id)
   VALUES ('Hoe kan ik in Thymeleaf X Y Z doen?', 'Graag zo snel mogelijk antwoord!', 12, '2016-08-30 00:34:00',

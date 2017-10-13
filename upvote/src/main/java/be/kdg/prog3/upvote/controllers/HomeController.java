@@ -1,10 +1,10 @@
-package be.kdg.prog3.upvote.controller;
+package be.kdg.prog3.upvote.controllers;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.upvote.persistence.VoteRepository;
-import be.kdg.prog3.upvote.security.UserDetails;
+import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ModelAndView showDefaultHomepage(@AuthenticationPrincipal UserDetails userDetails) {
+    public ModelAndView showDefaultHomepage(@AuthenticationPrincipal CustomUserDetails userDetails) {
         final List<QuestionAnswer> homepageQuestions = questionAnswerRepository.findTop10ByParentIsNullOrderByTimestampDesc();
         final List<Vote> votes;
         if (userDetails != null) {

@@ -1,13 +1,13 @@
-package be.kdg.prog3.upvote.controller;
+package be.kdg.prog3.upvote.controllers;
 
-import be.kdg.prog3.upvote.controller.exception.DuplicateVoteCastException;
-import be.kdg.prog3.upvote.controller.exception.QuestionNotFoundException;
-import be.kdg.prog3.upvote.controller.exception.VoteNotFoundException;
+import be.kdg.prog3.upvote.exceptions.DuplicateVoteCastException;
+import be.kdg.prog3.upvote.exceptions.QuestionNotFoundException;
+import be.kdg.prog3.upvote.exceptions.VoteNotFoundException;
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.upvote.persistence.VoteRepository;
-import be.kdg.prog3.upvote.security.UserDetails;
+import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +27,7 @@ public class VoteController {
     }
 
     @PostMapping("/vote/{qaId}/{upOrDown}")
-    public void castVote(@PathVariable long qaId, @PathVariable String upOrDown, @AuthenticationPrincipal UserDetails userDetails) {
+    public void castVote(@PathVariable long qaId, @PathVariable String upOrDown, @AuthenticationPrincipal CustomUserDetails userDetails) {
         final QuestionAnswer qa = this.questionAnswerRepository.findOne(qaId);
         if (qa != null) {
             Vote vote = this.voteRepository.findByQuestionAnswerIdAndUserId(qaId, userDetails.getUser().getId());
@@ -55,7 +55,7 @@ public class VoteController {
     }
 
     @DeleteMapping("/vote/{qaId}")
-    public void deleteVote(@PathVariable long qaId, @AuthenticationPrincipal UserDetails userDetails) {
+    public void deleteVote(@PathVariable long qaId, @AuthenticationPrincipal CustomUserDetails userDetails) {
         final QuestionAnswer qa = this.questionAnswerRepository.findOne(qaId);
         final Vote existingVote = this.voteRepository.findByQuestionAnswerIdAndUserId(qaId, userDetails.getUser().getId());
 

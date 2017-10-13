@@ -1,8 +1,7 @@
 package be.kdg.prog3.upvote.configuration;
 
-import be.kdg.prog3.upvote.persistence.UserRepository;
 import be.kdg.prog3.upvote.security.LoginSuccessHandler;
-import be.kdg.prog3.upvote.security.UserService;
+import be.kdg.prog3.upvote.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,16 +15,16 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public ApplicationSecurityConfig(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public ApplicationSecurityConfig(UserService userService) {
+        this.userService = userService;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new UserService(userRepository));
+        auth.userDetailsService(this.userService);
     }
 
     @Override

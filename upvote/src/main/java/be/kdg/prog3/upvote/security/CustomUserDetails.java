@@ -5,10 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-public class UserDetails extends org.springframework.security.core.userdetails.User {
+public class CustomUserDetails extends org.springframework.security.core.userdetails.User {
     private final User user;
 
-    UserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
         super(user.getName(), user.getPassword(), authorities);
         this.user = user;
     }

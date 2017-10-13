@@ -1,4 +1,4 @@
-package be.kdg.prog3.upvote.controller;
+package be.kdg.prog3.upvote.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

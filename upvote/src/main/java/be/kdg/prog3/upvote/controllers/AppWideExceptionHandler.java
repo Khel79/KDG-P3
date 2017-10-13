@@ -1,6 +1,6 @@
-package be.kdg.prog3.upvote.controller;
+package be.kdg.prog3.upvote.controllers;
 
-import be.kdg.prog3.upvote.controller.exception.QuestionNotFoundException;
+import be.kdg.prog3.upvote.exceptions.QuestionNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
