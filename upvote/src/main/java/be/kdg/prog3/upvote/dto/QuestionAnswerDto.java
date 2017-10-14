@@ -3,6 +3,7 @@ package be.kdg.prog3.upvote.dto;
 import java.util.Date;
 
 public class QuestionAnswerDto {
+    private long id;
     private String subject;
     private String body;
     private int score;
@@ -11,6 +12,14 @@ public class QuestionAnswerDto {
     private VoteDto currentUserVote;
 
     public QuestionAnswerDto() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getSubject() {

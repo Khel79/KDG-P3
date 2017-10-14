@@ -2,34 +2,33 @@ package be.kdg.prog3.upvote.services;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.User;
+import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.upvote.persistence.UserRepository;
+import be.kdg.prog3.upvote.persistence.VoteRepository;
+import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class QuestionAnswerService {
     private final QuestionAnswerRepository questionAnswerRepository;
     private final UserRepository userRepository;
+    private final VoteRepository voteRepository;
 
     @Autowired
-    public QuestionAnswerService(QuestionAnswerRepository questionAnswerRepository, UserRepository userRepository) {
+    public QuestionAnswerService(QuestionAnswerRepository questionAnswerRepository, UserRepository userRepository, VoteRepository voteRepository) {
         this.questionAnswerRepository = questionAnswerRepository;
         this.userRepository = userRepository;
+        this.voteRepository = voteRepository;
     }
 
     public QuestionAnswer getQuestion(long questionId) {
         return questionAnswerRepository.findOne(questionId);
-    }
-
-    public List<QuestionAnswer> getQuestionAnswers(QuestionAnswer question) {
-        return questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
-    }
-
-    public List<QuestionAnswer> getTopTenQuestions() {
-        return questionAnswerRepository.findTop10ByParentIsNullOrderByTimestampDesc();
     }
 
     public long saveQuestion(long userId, String subject, String body) {
@@ -45,5 +44,31 @@ public class QuestionAnswerService {
         final QuestionAnswer questionAnswer = new QuestionAnswer(body, user, parent);
         questionAnswerRepository.save(questionAnswer);
         return parent.getId();
+    }
+
+    public Map<QuestionAnswer, Vote> getAnswersWithUserVotes(QuestionAnswer question, CustomUserDetails userDetails) {
+        final List<QuestionAnswer> answers = this.questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
+        return enrichQAsWithUserVotes(answers, userDetails);
+    }
+
+    public Map<QuestionAnswer, Vote> getTopTenQuestionsWithUserVotes(CustomUserDetails userDetails) {
+        final List<QuestionAnswer> topTenQuestions = this.questionAnswerRepository.findTop10ByParentIsNullOrderByTimestampDesc();
+        return enrichQAsWithUserVotes(topTenQuestions, userDetails);
+    }
+
+    private Map<QuestionAnswer, Vote> enrichQAsWithUserVotes(List<QuestionAnswer> qas, CustomUserDetails userDetails) {
+        final Map<QuestionAnswer, Vote> votesByQA = new LinkedHashMap<>();
+
+        for (QuestionAnswer qa : qas) {
+            votesByQA.put(qa, null);
+        }
+        if (userDetails != null) {
+            final List<Vote> votes = this.voteRepository.findByQuestionAnswerInAndUserId(qas, userDetails.getUserId());
+            for (Vote vote : votes) {
+                votesByQA.put(vote.getQuestionAnswer(), vote);
+            }
+        }
+
+        return votesByQA;
     }
 }

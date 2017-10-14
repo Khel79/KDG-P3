@@ -1,5 +1,7 @@
 package be.kdg.prog3.upvote.controllers;
 
+import be.kdg.prog3.upvote.dto.DtoMapper;
+import be.kdg.prog3.upvote.dto.QuestionAnswerDto;
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
@@ -16,41 +18,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class QuestionAnswerController {
     private final QuestionAnswerService questionAnswerService;
     private final VoteService voteService;
 
+    private final DtoMapper dtoMapper;
+
     @Autowired
-    public QuestionAnswerController(QuestionAnswerService questionAnswerService, VoteService voteService) {
+    public QuestionAnswerController(QuestionAnswerService questionAnswerService, VoteService voteService, DtoMapper dtoMapper) {
         this.questionAnswerService = questionAnswerService;
         this.voteService = voteService;
+        this.dtoMapper = dtoMapper;
     }
 
     @GetMapping("/q/{questionId}")
     public ModelAndView showQuestion(@PathVariable long questionId, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        // TODO: refactor... there's too much business logic here...
         QuestionAnswer question = this.questionAnswerService.getQuestion(questionId);
         if (question != null) {
-            final List<QuestionAnswer> answers = this.questionAnswerService.getQuestionAnswers(question);
-            final List<Vote> votes;
-            if (userDetails != null) {
-                final List<QuestionAnswer> qasToFetchVotesFor = new ArrayList<>(answers);
-                qasToFetchVotesFor.add(question);
-                votes = this.voteService.getVotesByUser(qasToFetchVotesFor, userDetails.getUserId());
-            }
-            else {
-                votes = new ArrayList<>();
-            }
+            final Vote vote  = this.voteService.getVoteByUser(question, userDetails);
+            final Map<QuestionAnswer, Vote> answersWithVotes = this.questionAnswerService.getAnswersWithUserVotes(question, userDetails);
+
+            final QuestionAnswerDto questionDto = dtoMapper.toDto(question, vote);
+            final List<QuestionAnswerDto> answerDtos = dtoMapper.toDto(answersWithVotes);
 
             final ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("show_question");
-            modelAndView.getModel().put("question", question);
-            modelAndView.getModel().put("answers", answers);
-            modelAndView.getModel().put("votes", votes);
+            modelAndView.getModel().put("question", questionDto);
+            modelAndView.getModel().put("answers", answerDtos);
             return modelAndView;
         }
         else {

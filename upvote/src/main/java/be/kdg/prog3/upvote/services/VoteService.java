@@ -9,9 +9,11 @@ import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.upvote.persistence.UserRepository;
 import be.kdg.prog3.upvote.persistence.VoteRepository;
+import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -75,7 +77,19 @@ public class VoteService {
         }
     }
 
-    public List<Vote> getVotesByUser(List<QuestionAnswer> qAndAs, long userId) {
-        return voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userId);
+    public List<Vote> getVotesByUser(List<QuestionAnswer> qAndAs, CustomUserDetails userDetails) {
+        if (userDetails != null) {
+            return voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userDetails.getUserId());
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public Vote getVoteByUser(QuestionAnswer qa, CustomUserDetails userDetails) {
+        if (userDetails != null) {
+            return voteRepository.findByQuestionAnswerAndUserId(qa, userDetails.getUserId());
+        } else {
+            return null;
+        }
     }
 }

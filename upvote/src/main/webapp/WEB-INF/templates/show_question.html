@@ -14,13 +14,10 @@
     <div class="container">
         <div class="row-fluid">
             <div class="col-md-2" th:id="'question_' + ${question.id}">
-                <!-- /*
-                TODO: See notes in index.html. A DTO should be used here.
-                */ -->
-                <h3 th:with="currentVote=${votes.^[questionAnswer.id == __${question.id}__]}">
-                    <a href="" class="down" th:classappend="${currentVote != null and not currentVote.up} ? selectedDown : ''">&ddarr;</a>
+                <h3>
+                    <a href="" class="down" th:classappend="${question.currentUserVote != null and not question.currentUserVote.isUp()} ? selectedDown : ''">&ddarr;</a>
                     <span th:text="${question.score}"></span>
-                    <a href="" class="up" th:classappend="${currentVote != null and currentVote.up} ? selectedUp : ''">&uuarr;</a>
+                    <a href="" class="up" th:classappend="${question.currentUserVote != null and question.currentUserVote.isUp()} ? selectedUp : ''">&uuarr;</a>
                 </h3>
             </div>
             <div class="col-md-10">
@@ -28,7 +25,7 @@
                 <h2 th:text="${question.subject}"></h2>
                 <hr />
                 <p th:text="${question.body}"></p>
-                <h6 class="userTimestamp"><span th:text="${question.user.name}"></span> - <span th:text="${#dates.format(question.timestamp,'dd-MM-yyyy HH:mm')}"></span></h6>
+                <h6 class="userTimestamp"><span th:text="${question.userName}"></span> - <span th:text="${#dates.format(question.timestamp,'dd-MM-yyyy HH:mm')}"></span></h6>
                 <hr />
 
             </div>
@@ -36,19 +33,16 @@
 
         <div th:each="answer : ${answers}" class="row-fluid">
             <div class="col-md-2" th:id="'answer_' + ${answer.id}">
-                <!-- /*
-                TODO: See notes in index.html. A DTO should be used here.
-                */ -->
-                <h4 th:with="currentVote=${votes.^[questionAnswer.id == __${answer.id}__]}">
-                    <a href="" class="down" th:classappend="${currentVote != null and not currentVote.up} ? selectedDown : ''">&ddarr;</a>
+                <h4>
+                    <a href="" class="down" th:classappend="${answer.currentUserVote != null and not answer.currentUserVote.isUp()} ? selectedDown : ''">&ddarr;</a>
                     <span th:text="${answer.score}"></span>
-                    <a href="" class="up" th:classappend="${currentVote != null and currentVote.up} ? selectedUp : ''">&uuarr;</a>
+                    <a href="" class="up" th:classappend="${answer.currentUserVote != null and answer.currentUserVote.isUp()} ? selectedUp : ''">&uuarr;</a>
                 </h4>
             </div>
             <div class="col-md-10">
 
                 <p th:text="${answer.body}"></p>
-                <h6 class="userTimestamp"><span th:text="${answer.user.name}"></span> - <span th:text="${#dates.format(answer.timestamp,'dd-MM-yyyy HH:mm')}"></span></h6>
+                <h6 class="userTimestamp"><span th:text="${answer.userName}"></span> - <span th:text="${#dates.format(answer.timestamp,'dd-MM-yyyy HH:mm')}"></span></h6>
                 <hr />
 
             </div>

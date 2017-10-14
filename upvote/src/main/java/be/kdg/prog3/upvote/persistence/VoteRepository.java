@@ -11,4 +11,5 @@ import java.util.List;
 public interface VoteRepository extends CrudRepository<Vote, Long> {
     Vote findByQuestionAnswerIdAndUserId(long qaId, long userId);
     List<Vote> findByQuestionAnswerInAndUserId(List<QuestionAnswer> qaIds, long userId);
+    Vote findByQuestionAnswerAndUserId(QuestionAnswer qa, long userId);
 }

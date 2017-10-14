@@ -21,16 +21,10 @@
                 <table class="table table-hover">
                     <tr><th class="scoreColumn">Score</th><th>Question</th></tr>
                     <tr th:each="question : ${questions}" th:id="'question_' + ${question.id}">
-                        <!-- /*
-                        This is quite a construct and not at all performant.
-                        TODO: once a proper DTO is in place, the DTO should have a field that represents an upvote or downvote (or nothing) for the current user.
-                        What this code actually does: select the first (^) vote from the list called votes where the id
-                        of the QA is equal to the ID of the current question that we're showing here.
-                        */ -->
-                        <td class="scoreColumn" th:with="currentVote=${votes.^[questionAnswer.id == __${question.id}__]}">
-                            <a href="" class="down" th:classappend="${currentVote != null and not currentVote.up} ? selectedDown : ''">&ddarr;</a>
+                        <td class="scoreColumn">
+                            <a href="" class="down" th:classappend="${question.currentUserVote != null and not question.currentUserVote.isUp()} ? selectedDown : ''">&ddarr;</a>
                             <span th:text="${question.score}"></span>
-                            <a href="" class="up" th:classappend="${currentVote != null and currentVote.up} ? selectedUp : ''">&uuarr;</a>
+                            <a href="" class="up" th:classappend="${question.currentUserVote != null and question.currentUserVote.isUp()} ? selectedUp : ''">&uuarr;</a>
                         </td>
                         <td>
                             <a th:href="@{/q/{id}(id=${question.id})}" th:text="${question.subject}" class="subject"></a>
