@@ -12,11 +12,13 @@ import be.kdg.prog3.upvote.persistence.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VoteService {
-    private VoteRepository voteRepository;
-    private QuestionAnswerRepository questionAnswerRepository;
-    private UserRepository userRepository;
+    private final VoteRepository voteRepository;
+    private final QuestionAnswerRepository questionAnswerRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public VoteService(VoteRepository voteRepository, QuestionAnswerRepository questionAnswerRepository, UserRepository userRepository) {
@@ -71,5 +73,9 @@ public class VoteService {
         else {
             throw new VoteNotFoundException("Couldn't find this vote.");
         }
+    }
+
+    public List<Vote> getVotesByUser(List<QuestionAnswer> qAndAs, long userId) {
+        return voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userId);
     }
 }

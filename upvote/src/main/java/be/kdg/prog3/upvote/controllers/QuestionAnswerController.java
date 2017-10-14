@@ -4,6 +4,7 @@ import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
 import be.kdg.prog3.upvote.services.QuestionAnswerService;
+import be.kdg.prog3.upvote.services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,11 +21,13 @@ import java.util.List;
 
 @Controller
 public class QuestionAnswerController {
-    private QuestionAnswerService questionAnswerService;
+    private final QuestionAnswerService questionAnswerService;
+    private final VoteService voteService;
 
     @Autowired
-    public QuestionAnswerController(QuestionAnswerService questionAnswerService) {
+    public QuestionAnswerController(QuestionAnswerService questionAnswerService, VoteService voteService) {
         this.questionAnswerService = questionAnswerService;
+        this.voteService = voteService;
     }
 
     @GetMapping("/q/{questionId}")
@@ -35,8 +38,9 @@ public class QuestionAnswerController {
             final List<QuestionAnswer> answers = this.questionAnswerService.getQuestionAnswers(question);
             final List<Vote> votes;
             if (userDetails != null) {
-                answers.add(question);
-                votes = this.questionAnswerService.getVotesByUser(answers, userDetails.getUserId());
+                final List<QuestionAnswer> qasToFetchVotesFor = new ArrayList<>(answers);
+                qasToFetchVotesFor.add(question);
+                votes = this.voteService.getVotesByUser(qasToFetchVotesFor, userDetails.getUserId());
             }
             else {
                 votes = new ArrayList<>();

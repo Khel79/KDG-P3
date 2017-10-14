@@ -2,10 +2,8 @@ package be.kdg.prog3.upvote.services;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.User;
-import be.kdg.prog3.upvote.model.Vote;
 import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
 import be.kdg.prog3.upvote.persistence.UserRepository;
-import be.kdg.prog3.upvote.persistence.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +11,12 @@ import java.util.List;
 
 @Service
 public class QuestionAnswerService {
-    private QuestionAnswerRepository questionAnswerRepository;
-    private VoteRepository voteRepository;
-    private UserRepository userRepository;
+    private final QuestionAnswerRepository questionAnswerRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public QuestionAnswerService(QuestionAnswerRepository questionAnswerRepository, VoteRepository voteRepository, UserRepository userRepository) {
+    public QuestionAnswerService(QuestionAnswerRepository questionAnswerRepository, UserRepository userRepository) {
         this.questionAnswerRepository = questionAnswerRepository;
-        this.voteRepository = voteRepository;
         this.userRepository = userRepository;
     }
 
@@ -32,8 +28,8 @@ public class QuestionAnswerService {
         return questionAnswerRepository.findAnswersByParentOrderByTimestampAsc(question);
     }
 
-    public List<Vote> getVotesByUser(List<QuestionAnswer> qAndAs, long userId) {
-        return voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userId);
+    public List<QuestionAnswer> getTopTenQuestions() {
+        return questionAnswerRepository.findTop10ByParentIsNullOrderByTimestampDesc();
     }
 
     public long saveQuestion(long userId, String subject, String body) {

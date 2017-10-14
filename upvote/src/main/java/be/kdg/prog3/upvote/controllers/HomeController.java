@@ -2,9 +2,9 @@ package be.kdg.prog3.upvote.controllers;
 
 import be.kdg.prog3.upvote.model.QuestionAnswer;
 import be.kdg.prog3.upvote.model.Vote;
-import be.kdg.prog3.upvote.persistence.QuestionAnswerRepository;
-import be.kdg.prog3.upvote.persistence.VoteRepository;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
+import be.kdg.prog3.upvote.services.QuestionAnswerService;
+import be.kdg.prog3.upvote.services.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,21 +16,21 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    private QuestionAnswerRepository questionAnswerRepository;
-    private VoteRepository voteRepository;
+    private final QuestionAnswerService questionAnswerService;
+    private final VoteService voteService;
 
     @Autowired
-    public HomeController(QuestionAnswerRepository questionAnswerRepository, VoteRepository voteRepository) {
-        this.questionAnswerRepository = questionAnswerRepository;
-        this.voteRepository = voteRepository;
+    public HomeController(QuestionAnswerService questionAnswerService, VoteService voteService) {
+        this.questionAnswerService = questionAnswerService;
+        this.voteService = voteService;
     }
 
     @GetMapping("/")
     public ModelAndView showDefaultHomepage(@AuthenticationPrincipal CustomUserDetails userDetails) {
-        final List<QuestionAnswer> homepageQuestions = questionAnswerRepository.findTop10ByParentIsNullOrderByTimestampDesc();
+        final List<QuestionAnswer> homepageQuestions = this.questionAnswerService.getTopTenQuestions();
         final List<Vote> votes;
         if (userDetails != null) {
-            votes = voteRepository.findByQuestionAnswerInAndUserId(homepageQuestions, userDetails.getUserId());
+            votes = this.voteService.getVotesByUser(homepageQuestions, userDetails.getUserId());
         }
         else {
             votes = new ArrayList<>();

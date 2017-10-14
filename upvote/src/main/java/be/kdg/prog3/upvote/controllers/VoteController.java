@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VoteController {
-    private VoteService voteService;
+    private final VoteService voteService;
 
     @Autowired
     public VoteController(VoteService voteService) {
