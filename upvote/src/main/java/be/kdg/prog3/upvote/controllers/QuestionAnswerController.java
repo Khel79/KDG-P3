@@ -80,7 +80,7 @@ public class QuestionAnswerController {
     @PostMapping("/a")
     public String addAnswer(@RequestParam String body, @RequestParam long parentId,
                               @AuthenticationPrincipal CustomUserDetails userDetails) {
-        final long questionId = this.questionAnswerService.saveAnswer(userDetails.getUserId(), body, parentId);
-        return "redirect:/q/" + questionId;
+        this.questionAnswerService.saveAnswer(userDetails.getUserId(), body, parentId);
+        return "redirect:/q/" + parentId;
     }
 }

@@ -38,12 +38,11 @@ public class QuestionAnswerService {
         return questionAnswer.getId();
     }
 
-    public long saveAnswer(long userId, String body, long parentId) {
+    public void saveAnswer(long userId, String body, long parentId) {
         final User user = this.userRepository.findOne(userId);
         final QuestionAnswer parent = questionAnswerRepository.findOne(parentId);
         final QuestionAnswer questionAnswer = new QuestionAnswer(body, user, parent);
         questionAnswerRepository.save(questionAnswer);
-        return parent.getId();
     }
 
     public Map<QuestionAnswer, Vote> getAnswersWithUserVotes(QuestionAnswer question, CustomUserDetails userDetails) {
