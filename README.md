@@ -52,10 +52,7 @@ In deze repository vind je voorbeeldcode voor het vak Programmeren 3. Elke direc
 
 - [cycling_hibernate_db_first](cycling_hibernate_db_first) ![Spring Boot][spring_boot] ![Thymeleaf][thymeleaf] ![Hibernate][hibernate]
 
-  **Extra:** Een spring MVC applicatie waarbij de achterliggende databank wordt opgezet m.b.v. SQL scripts.
-
-## Week 5
-
+  Een spring MVC applicatie waarbij de achterliggende databank wordt opgezet m.b.v. SQL scripts.
 
 ## Geintegreerd project
 
