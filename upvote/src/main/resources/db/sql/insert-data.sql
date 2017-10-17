@@ -1,13 +1,13 @@
 INSERT INTO user (use_name, use_email, use_password)
-  VALUES ('lars', 'lars@somehost.com', 'lars');
+  VALUES ('lars', 'lars@somehost.com', '$2a$10$UopG5zHB55MTuPQiS5q2yuEPJtsy53.tPy1hGXT53CBWhwjcZWwsW');
 INSERT INTO user (use_name, use_email, use_password)
-  VALUES ('rudy', 'rudy@somehost.com', 'rudy');
+  VALUES ('rudy', 'rudy@somehost.com', '$2a$10$slxOL6AKBoM8nQdbBobBaeIudBLOzbudxCupriH1JD2Hi7QYpFbPG');
 INSERT INTO user (use_name, use_email, use_password)
-  VALUES ('marcel', 'marcel@somehost.com', 'marcel');
+  VALUES ('marcel', 'marcel@somehost.com', '$2a$10$D2HqiFbG8fjTxxIbncRfT.rR8JHxexejnDZN5N0RPyvbG8WeyiMJe');
 INSERT INTO user (use_name, use_email, use_password)
-  VALUES ('jos', 'jos@somehost.com', 'jos');
+  VALUES ('jos', 'jos@somehost.com', '$2a$10$ORvD9KB8tR3CHfofFagdweuvzeuanL2ZjExryYCXdXYLeFsKFNha.');
 INSERT INTO user (use_name, use_email, use_password)
-  VALUES ('pedro', 'pedro@somehost.com', 'pedro');
+  VALUES ('pedro', 'pedro@somehost.com', '$2a$10$nUU/rK7cxdllPS2pkDwKF.MZKpwvG2McoY905ks5/8b1Mn4ewacj6');
 
 INSERT INTO question_answer (qa_subject, qa_body, qa_score, qa_timestamp, qa_use_id)
   VALUES ('Hoe laat is het?', 'Graag zo snel mogelijk antwoord!', 20, '2016-08-30 14:47:00',
