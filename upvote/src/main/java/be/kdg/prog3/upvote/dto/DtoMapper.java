@@ -32,4 +32,10 @@ public class DtoMapper {
         result.setCurrentUserVote(vote == null ? null : new VoteDto(vote.isUp()));
         return result;
     }
+
+    public VoteDto toDto(Vote vote) {
+        final VoteDto result = new VoteDto();
+        result.setUp(vote.isUp());
+        return result;
+    }
 }

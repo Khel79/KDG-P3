@@ -12,11 +12,10 @@ import be.kdg.prog3.upvote.persistence.VoteRepository;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class VoteService {
     private final VoteRepository voteRepository;
     private final QuestionAnswerRepository questionAnswerRepository;
@@ -77,11 +76,12 @@ public class VoteService {
         }
     }
 
-    public List<Vote> getVotesByUser(List<QuestionAnswer> qAndAs, CustomUserDetails userDetails) {
-        if (userDetails != null) {
-            return voteRepository.findByQuestionAnswerInAndUserId(qAndAs, userDetails.getUserId());
+    public Vote getVoteByUser(long qaId, CustomUserDetails userDetails) {
+        final QuestionAnswer qa = this.questionAnswerRepository.findOne(qaId);
+        if (qa != null && userDetails != null) {
+            return voteRepository.findByQuestionAnswerAndUserId(qa, userDetails.getUserId());
         } else {
-            return new ArrayList<>();
+            return null;
         }
     }
 

@@ -9,12 +9,14 @@ import be.kdg.prog3.upvote.persistence.VoteRepository;
 import be.kdg.prog3.upvote.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 public class QuestionAnswerService {
     private final QuestionAnswerRepository questionAnswerRepository;
     private final UserRepository userRepository;
